@@ -5,13 +5,25 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Models\NHibernate\AddLocation.hbm.xml" />
-    <None Remove="Models\NHibernate\hibernate.cfg.xml" />
+    <None Remove="hibernate.cfg.xml" />
+    <None Remove="Models\AddLocationDetailsToDatabase.hbm.xml" />
+    <None Remove="Models\hibernate.cfg.xml" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Models\NHibernate\AddLocation.hbm.xml" />
-    <EmbeddedResource Include="Models\NHibernate\hibernate.cfg.xml" />
+    <Content Include="AddLocationDetailsToDatabase.hbm.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="AddLocationDetailsToDatabase.hbm.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="hibernate.cfg.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Models\hibernate.cfg.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>

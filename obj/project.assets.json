@@ -8788,11 +8788,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\670264172\\OneDrive - Signify\\MapsApplication\\MapsApplication.csproj",
+      "projectUniqueName": "C:\\Users\\670264172\\Desktop\\LocalGIT\\MapsApplication\\MapsApplication\\MapsApplication.csproj",
       "projectName": "MapsApplication",
-      "projectPath": "C:\\Users\\670264172\\OneDrive - Signify\\MapsApplication\\MapsApplication.csproj",
+      "projectPath": "C:\\Users\\670264172\\Desktop\\LocalGIT\\MapsApplication\\MapsApplication\\MapsApplication.csproj",
       "packagesPath": "C:\\Users\\670264172\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\670264172\\OneDrive - Signify\\MapsApplication\\obj\\",
+      "outputPath": "C:\\Users\\670264172\\Desktop\\LocalGIT\\MapsApplication\\MapsApplication\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
