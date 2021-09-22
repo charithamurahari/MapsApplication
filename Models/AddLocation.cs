@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using NHibernate;
+using System.ComponentModel.DataAnnotations;
 namespace MapsApplication.Models
 {
     public class AddLocation
