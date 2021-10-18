@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-
+                  
 namespace MapsApplication.Controllers
 {
     public class HomeController : Controller
@@ -15,6 +15,7 @@ namespace MapsApplication.Controllers
         private readonly ILogger<HomeController> _logger;
         public static List<AddLocationDetailsToDatabase> dataFromControllerToView;
         public static List<AddLocationDetailsToDatabase> locationDetailsFromDatabases;
+        AddLocationDetailsToDatabase addLocationDetailsToDatabase = new AddLocationDetailsToDatabase();
 
         public HomeController(ILogger<HomeController> logger)
         {
@@ -35,7 +36,7 @@ namespace MapsApplication.Controllers
         [HttpPost]
         public IActionResult Index(AddLocation addLocation)
         {
-            AddLocationDetailsToDatabase addLocationDetailsToDatabase = new AddLocationDetailsToDatabase();
+
             int count = 0;
             using (ISession session2 = NHibernateHelper.OpenSession())
             {
@@ -51,8 +52,17 @@ namespace MapsApplication.Controllers
             {
                 using (ITransaction transaction = session.BeginTransaction())
                 {
-                    session.Save(addLocationDetailsToDatabase);
-                    transaction.Commit();
+                    try
+                    {
+                        session.Save(addLocationDetailsToDatabase);
+                        transaction.Commit();
+                    }
+                    //session.Save(addLocationDetailsToDatabase);
+                    //transaction.Commit();
+                    catch (Exception)
+                    {
+                        Console.WriteLine("Exception Occured. Enter details correctly");
+                    }
                 }
             }
             using (ISession session2 = NHibernateHelper.OpenSession())
@@ -61,6 +71,44 @@ namespace MapsApplication.Controllers
                 dataFromControllerToView = new List<AddLocationDetailsToDatabase>(result);
             }
         return View();
+        }
+
+        [HttpPost]
+        [ActionName("Location")]
+        public string Post(string locationName, double latitudeValue, double longitudeValue)
+        {
+            int count = 0;
+            using (ISession session2 = NHibernateHelper.OpenSession())
+            {
+                var details = session2.QueryOver<AddLocationDetailsToDatabase>().List();
+                count = details.Count + 1;
+            }
+
+            addLocationDetailsToDatabase.id = count;
+            addLocationDetailsToDatabase.Name = locationName;
+            addLocationDetailsToDatabase.Latitude = latitudeValue;
+            addLocationDetailsToDatabase.Longitude = longitudeValue;
+            
+            using (ISession session = NHibernateHelper.OpenSession())
+            {
+                using (ITransaction transaction = session.BeginTransaction())
+                {
+                    session.Save(addLocationDetailsToDatabase);
+                    transaction.Commit();
+                }
+            }
+            return "success";
+        }
+
+        [HttpGet]
+        [ActionName("GetLocationDetails")]
+        public IEnumerable<AddLocationDetailsToDatabase> Get()
+        {
+            using (ISession session1 = NHibernateHelper.OpenSession())
+            {
+                var result = session1.QueryOver<AddLocationDetailsToDatabase>().List();
+                return result;
+            }
         }
     }
 }
