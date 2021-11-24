@@ -32,7 +32,7 @@ namespace MapsApplication.Controllers
             return View(new AddLocation());
 
         }
-        
+
         [HttpPost]
         public IActionResult Index(AddLocation addLocation)
         {
@@ -52,27 +52,22 @@ namespace MapsApplication.Controllers
             {
                 using (ITransaction transaction = session.BeginTransaction())
                 {
-                    try
-                    {
-                        session.Save(addLocationDetailsToDatabase);
-                        transaction.Commit();
-                    }
-                    //session.Save(addLocationDetailsToDatabase);
-                    //transaction.Commit();
-                    catch (Exception)
-                    {
-                        Console.WriteLine("Exception Occured. Enter details correctly");
-                    }
+
+                    session.Save(addLocationDetailsToDatabase);
+                    transaction.Commit();
+                    
                 }
             }
-            using (ISession session2 = NHibernateHelper.OpenSession())
+
+            using (ISession session1 = NHibernateHelper.OpenSession())
             {
-                var result = session2.QueryOver<AddLocationDetailsToDatabase>().List();
-                dataFromControllerToView = new List<AddLocationDetailsToDatabase>(result);
+                var result = session1.QueryOver<AddLocationDetailsToDatabase>().List();
+                locationDetailsFromDatabases = new List<AddLocationDetailsToDatabase>(result);
             }
-        return View();
+            return View();
         }
 
+        
         [HttpPost]
         [ActionName("Location")]
         public string Post(string locationName, double latitudeValue, double longitudeValue)
