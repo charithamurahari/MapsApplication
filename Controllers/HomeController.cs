@@ -32,7 +32,7 @@ namespace MapsApplication.Controllers
             return View(new AddLocation());
 
         }
-        
+
         [HttpPost]
         public IActionResult Index(AddLocation addLocation)
         {
@@ -58,14 +58,16 @@ namespace MapsApplication.Controllers
                     
                 }
             }
-            using (ISession session2 = NHibernateHelper.OpenSession())
+
+            using (ISession session1 = NHibernateHelper.OpenSession())
             {
-                var result = session2.QueryOver<AddLocationDetailsToDatabase>().List();
-                dataFromControllerToView = new List<AddLocationDetailsToDatabase>(result);
+                var result = session1.QueryOver<AddLocationDetailsToDatabase>().List();
+                locationDetailsFromDatabases = new List<AddLocationDetailsToDatabase>(result);
             }
-        return View();
+            return View();
         }
 
+        
         [HttpPost]
         [ActionName("Location")]
         public string Post(string locationName, double latitudeValue, double longitudeValue)

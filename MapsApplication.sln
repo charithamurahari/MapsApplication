@@ -4,8 +4,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 16.0.31624.102
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MapsApplication", "MapsApplication.csproj", "{CB1EF68E-16DD-40E2-A9BC-CDF1ECC17BAA}"
+<<<<<<< HEAD
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MapsApplicationTests", "..\MapsApplicationTests\MapsApplicationTests.csproj", "{EF715610-6C3C-48C0-8355-EFB7A4600F4D}"
+=======
+>>>>>>> MapsV1
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
