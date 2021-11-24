@@ -52,17 +52,10 @@ namespace MapsApplication.Controllers
             {
                 using (ITransaction transaction = session.BeginTransaction())
                 {
-                    try
-                    {
-                        session.Save(addLocationDetailsToDatabase);
-                        transaction.Commit();
-                    }
-                    //session.Save(addLocationDetailsToDatabase);
-                    //transaction.Commit();
-                    catch (Exception)
-                    {
-                        Console.WriteLine("Exception Occured. Enter details correctly");
-                    }
+
+                    session.Save(addLocationDetailsToDatabase);
+                    transaction.Commit();
+                    
                 }
             }
             using (ISession session2 = NHibernateHelper.OpenSession())
