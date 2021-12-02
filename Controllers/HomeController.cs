@@ -70,7 +70,7 @@ namespace MapsApplication.Controllers
         
         [HttpPost]
         [ActionName("Location")]
-        public string Post(string locationName, double latitudeValue, double longitudeValue)
+        public string Post([FromBody]AddLocation addLocation)
         {
             int count = 0;
             using (ISession session2 = NHibernateHelper.OpenSession())
@@ -80,9 +80,9 @@ namespace MapsApplication.Controllers
             }
 
             addLocationDetailsToDatabase.id = count;
-            addLocationDetailsToDatabase.Name = locationName;
-            addLocationDetailsToDatabase.Latitude = latitudeValue;
-            addLocationDetailsToDatabase.Longitude = longitudeValue;
+            addLocationDetailsToDatabase.Name = addLocation.Name;
+            addLocationDetailsToDatabase.Latitude = addLocation.Latitude;
+            addLocationDetailsToDatabase.Longitude = addLocation.Longitude;
             
             using (ISession session = NHibernateHelper.OpenSession())
             {
